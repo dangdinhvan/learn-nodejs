@@ -1,19 +1,3 @@
-// const express = require('express');
-// const app = express();
-// const port = 8080;
-//
-// app.get('/', (req, res) => {
-// 	res.send('This is home!');
-// });
-//
-// app.get('/about', (req, res) => {
-// 	res.send('This is about!');
-// });
-//
-// app.listen(port, () => {
-// 	console.log(`Example app listening on port ${port}`);
-// });
-
 const fs = require('fs');
 const key = fs.readFileSync('cert/CA/localhost/localhost.decrypted.key');
 const cert = fs.readFileSync('cert/CA/localhost/localhost.crt');

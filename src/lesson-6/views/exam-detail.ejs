@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>chi tiết đề thi</title>
+		<style>
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.exam-content {
+				display: flex;
+				gap: 40px;
+			}
+
+			.exam-sidebar {
+				display: grid;
+				font-size: 16px;
+				grid-template-columns: repeat(5, 1.7rem);
+				grid-gap: 12px;
+				padding: 12px;
+				background-color: #e6e6e6;
+				width: fit-content;
+				height: fit-content;
+			}
+
+			.question-number {
+				background-color: rgb(200, 200, 214);
+				font-weight: 600;
+				aspect-ratio: 1;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border: gray 1px solid;
+				cursor: pointer;
+			}
+
+			.question-number.paralysis-point {
+				background-color: brown;
+			}
+
+			h5 {
+				font-size: 17px;
+				margin: 0;
+				margin-bottom: 12px;
+			}
+
+			.answer-content {
+				margin-bottom: 12px;
+			}
+		</style>
+	</head>
+	<body>
+		<% let questionData=examData.examQuestions[0] %>
+		<h1 style="text-align: center"><%= examData.name %></h1>
+		<div class="exam-content">
+			<div class="exam-sidebar">
+				<% examData.examQuestions.forEach((question,index)=> { %>
+				<div
+					class="<% if(question.paralysisPoint) { %>question-number paralysis-point<% } else { %>question-number<% } %>"
+					onclick="selectQuestion('<%= question %>')"
+				>
+					<%= index +1 %>
+				</div>
+				<% }); %>
+			</div>
+			<div class="exam-main-content">
+				<h5>Câu hỏi <%= questionData.id +1 %></h5>
+				<% if (questionData.questionImage) { %>
+				<img src="<%= questionData.questionImage %>" />
+				<% } %>
+				<div
+					style="font-weight: 600; margin-bottom: 12px"
+					class="question-content"
+				>
+					<%= questionData.questionContent %>
+				</div>
+				<% questionData.answers.forEach((answer,index)=> { %>
+				<div class="answer-content">
+					<input type="checkbox" /> <%= answer.content %>
+				</div>
+				<% }); %>
+			</div>
+		</div>
+	</body>
+</html>
